@@ -1,0 +1,165 @@
+gonzalosalinas=# CREATE DATABASE call_list;
+CREATE DATABASE
+
+gonzalosalinas=# CREATE DATABASE call_list;
+CREATE DATABASE
+gonzalosalinas=# \c  call_list
+psql (10.4, server 10.5)
+You are now connected to database "call_list" as user "gonzalosalinas".
+
+call_list=# CREATE TABLE users (
+call_list(# id SERIAL PRIMARY KEY,
+call_list(# first_name VARCHAR(30),
+call_list(# email VARCHAR(64)
+call_list(# );
+CREATE TABLE
+
+call_list=# INSERT INTO users(first_name, email) VALUES ('Carlos', 'carlos_95@mail.com');
+INSERT 0 1
+
+call_list=# INSERT INTO users(first_name, email) VALUES ('Laura', 'lalalaura@gmail.com');
+INSERT 0 1
+
+call_list=# CREATE DATABASE calls;
+CREATE DATABASE
+
+call_list=# CREATE TABLE calls (
+id SERIAL PRIMARY KEY,
+phone INTEGER,
+date DATE,
+user_id INTEGER REFERENCES users (id)
+);
+CREATE TABLE
+
+call_list=# ALTER TABLE users ADD last_name VARCHAR(40);
+ALTER TABLE
+
+call_list=# UPDATE users SET last_name = 'Gutenberg';
+UPDATE 2
+
+call_list=# UPDATE users SET last_name = 'Galleguillos' WHERE first_name = 'Laura';
+UPDATE 1
+call_list=# SELECT * FROM users
+;
+ id | first_name |        email        |  last_name
+----+------------+---------------------+--------------
+  1 | Carlos     | carlos_95@mail.com  | Gutenberg
+  2 | Laura      | lalalaura@gmail.com | Galleguillos
+(2 rows)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (23489034, '2018-01-18', 1);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |  phone   |    date    | user_id
+----+----------+------------+---------
+  1 | 23489034 | 2018-01-18 |       1
+(1 row)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (758473754, '2018-01-20', 1);
+INSERT 0 1
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (23874884, '2018-01-21', 1);
+INSERT 0 1
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (57983412, '2018-01-22', 1);
+INSERT 0 1
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (57980543, '2018-01-23', 1);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |   phone   |    date    | user_id
+----+-----------+------------+---------
+  1 |  23489034 | 2018-01-18 |       1
+  2 | 758473754 | 2018-01-20 |       1
+  3 |  23874884 | 2018-01-21 |       1
+  4 |  57983412 | 2018-01-22 |       1
+  5 |  57980543 | 2018-01-23 |       1
+(5 rows)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (94357689, '2018-01-24', 1);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |   phone   |    date    | user_id
+----+-----------+------------+---------
+  1 |  23489034 | 2018-01-18 |       1
+  2 | 758473754 | 2018-01-20 |       1
+  3 |  23874884 | 2018-01-21 |       1
+  4 |  57983412 | 2018-01-22 |       1
+  5 |  57980543 | 2018-01-23 |       1
+  6 |  94357689 | 2018-01-24 |       1
+(6 rows)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (78943567, '2018-03-01', 2);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |   phone   |    date    | user_id
+----+-----------+------------+---------
+  1 |  23489034 | 2018-01-18 |       1
+  2 | 758473754 | 2018-01-20 |       1
+  3 |  23874884 | 2018-01-21 |       1
+  4 |  57983412 | 2018-01-22 |       1
+  5 |  57980543 | 2018-01-23 |       1
+  6 |  94357689 | 2018-01-24 |       1
+  7 |  78943567 | 2018-03-01 |       2
+(7 rows)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (82349000, '2018-03-03', 2);
+INSERT 0 1
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (70894355, '2018-03-05', 2);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |   phone   |    date    | user_id
+----+-----------+------------+---------
+  1 |  23489034 | 2018-01-18 |       1
+  2 | 758473754 | 2018-01-20 |       1
+  3 |  23874884 | 2018-01-21 |       1
+  4 |  57983412 | 2018-01-22 |       1
+  5 |  57980543 | 2018-01-23 |       1
+  6 |  94357689 | 2018-01-24 |       1
+  7 |  78943567 | 2018-03-01 |       2
+  8 |  82349000 | 2018-03-03 |       2
+  9 |  70894355 | 2018-03-05 |       2
+(9 rows)
+
+call_list=# INSERT INTO calls(phone, date, user_id) VALUES (29485038, '2018-03-06', 2);
+INSERT 0 1
+call_list=# SELECT * FROM calls                                                 ;
+ id |   phone   |    date    | user_id
+----+-----------+------------+---------
+  1 |  23489034 | 2018-01-18 |       1
+  2 | 758473754 | 2018-01-20 |       1
+  3 |  23874884 | 2018-01-21 |       1
+  4 |  57983412 | 2018-01-22 |       1
+  5 |  57980543 | 2018-01-23 |       1
+  6 |  94357689 | 2018-01-24 |       1
+  7 |  78943567 | 2018-03-01 |       2
+  8 |  82349000 | 2018-03-03 |       2
+  9 |  70894355 | 2018-03-05 |       2
+ 10 |  29485038 | 2018-03-06 |       2
+(10 rows)
+
+call_list=# CREATE USER danialvaro;
+CREATE ROLE
+
+call_list=# SELECT first_name, COUNT(calls) FROM users INNER JOIN calls ON (users.id = calls.user_id) GROUP BY first_name;
+
+ first_name | count
+------------+-------
+ Carlos     |     6
+ Laura      |     4
+(2 rows)
+
+call_list=# SELECT phone FROM calls WHERE user_id = 1 ORDER BY phone ASC;
+   phone
+-----------
+  23489034
+  23874884
+  57980543
+  57983412
+  94357689
+ 758473754
+(6 rows)
+
+call_list=# CREATE TABLE audit (
+call_list(# id integer PRIMARY KEY,
+call_list(# reason VARCHAR(140),
+call_list(# user_id INTEGER REFERENCES users(id)
+call_list(# );
+CREATE TABLE
